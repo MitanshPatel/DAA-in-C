@@ -9,7 +9,7 @@ int max(int x, int y){
     return y;
 }
 
-//-----Using Divide and conquer--------------
+//-----Using Divide and conquer-------------- O(nlogn)
 int max_sum(int arr[], int st, int end){
     //if array contains 0 or 1 element
     if(end<=st){
@@ -40,20 +40,21 @@ int max_sum(int arr[], int st, int end){
     }
 
     //recursively find max subarray sum for left and right subarray and take max
-    int max_left_right= max(max_sum(arr, st, mid), max_sum(arr,mid+1,end));
+    int max_left_right= max(max_sum(arr, st, mid), max_sum(arr,mid+1,end));  //max of LSS and RSS
+    
 
-    return max(max_left_right, left_max+right_max);
+    return max(max_left_right, left_max+right_max);     //left_max+right_max = CSS
 }
 
 int main(){
-    int arr[]={2, -4, 1, 9, -6, 7, -3};
+    int arr[]={-2,-5,6,-2,-3,1,5,-6};
     int n= sizeof(arr)/sizeof(arr[0]);
     printf("Max sum of contiguous subarray: %d\n",max_sum(arr,0,n-1));
     return 0;
 }
 
 
-//------------Without Divide and Conquer-------
+//------------Kadane-------  O(n)
 // void kadane(int arr[], int n){
 //     int max_sum=0;
 //     int curr_sum=0;
